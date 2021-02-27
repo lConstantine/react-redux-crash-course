@@ -1,8 +1,7 @@
 import './App.css';
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
-import { addCustomerAction, removeCustomerAction } from './store/customerReducer'
-import { fetchCustomers } from './asyncActions/customers'
+import { useDispatch, useSelector } from "react-redux"
+import { addCashAction, getCashAction } from './store/actions/actions'
+import { addCustomerAction, removeCustomerAction, fetchCustomers } from './store/actions/actions'
 
 function App() {
 
@@ -10,19 +9,8 @@ function App() {
   const cash = useSelector(state => state.cash.cash)
   const customers = useSelector(state => state.customers.customers)
 
-  const addCash = amount => {
-    dispatch({
-      type: "ADD_CASH",
-      payload: amount,
-    })
-  }
-
-  const getCash = amount => {
-    dispatch({
-      type: "GET_CASH",
-      payload: amount,
-    })
-  }
+  const addCash = amount => dispatch(addCashAction(amount))
+  const getCash = amount => dispatch(getCashAction(amount))
 
   const addCustomer = name => {
     const customer = {
@@ -32,9 +20,8 @@ function App() {
     dispatch(addCustomerAction(customer))
   }
 
-  const removeCustomer = customer => {
-    dispatch(removeCustomerAction(customer.id))
-  }
+  const removeCustomer = customer => dispatch(removeCustomerAction(customer.id))
+
 
 
   return (
