@@ -1,4 +1,4 @@
-import { ADD_CUSTOMER, REMOVE_CUSTOMER } from './actionTypes'
+import { ADD_CUSTOMER, REMOVE_CUSTOMER, CUSTOMER_ERROR } from './actionTypes'
 
 
 export const addCustomerAction = customerData => ({
@@ -15,10 +15,28 @@ export const removeCustomerAction = customerData => ({
   },
 })
 
+const customerSuccsess = customerData => ({
+  type: ADD_CUSTOMER,
+  payload: {
+    customerData
+  }
+})
+
+const customerError = error => ({
+  type: CUSTOMER_ERROR,
+  payload: {
+    error,
+  }
+})
+
 export const fetchCustomers = () => {
-  return function (dispatch) {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => dispatch(addCustomerAction(json)))
+  return async function (dispatch) {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users')
+      const json = await response.json()
+      dispatch(customerSuccsess(json))
+    } catch (err) {
+      dispatch(customerError(err))
+    }
   }
 }
