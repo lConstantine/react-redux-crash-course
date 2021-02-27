@@ -30,7 +30,6 @@ function App() {
           <button onClick={() => addCash(+prompt())}>Пополнить счёт</button>
           <button onClick={() => getCash(+prompt())}>Снять со счёта</button>
           <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
-          <button onClick={() => getCash(+prompt())}>Удалить клиента</button>
           <button onClick={() => dispatch(fetchCustomers())}>Получить базу клиентов</button>
         </div>
       </>
