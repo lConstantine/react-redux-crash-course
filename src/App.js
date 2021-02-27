@@ -22,8 +22,6 @@ function App() {
 
   const removeCustomer = customer => dispatch(removeCustomerAction(customer.id))
 
-
-
   return (
     <div className="App" style={{ marginTop: '40vh' }}>
       <>
@@ -40,7 +38,9 @@ function App() {
         {customers.length > 0
           ? <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>Клиенты:<br />
             {customers.map(customer =>
-              <div onClick={() => removeCustomer(customer)}
+              <div
+                key={customer.id}
+                onClick={() => removeCustomer(customer)}
                 style={{ border: "2px solid black", padding: "10px", margin: "5px", width: "200px" }}>
                 {customer.name}
               </div>)}

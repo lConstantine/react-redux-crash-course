@@ -1,2 +1,2 @@
 export { addCashAction, getCashAction } from './cash'
-export { addCustomerAction, addManyCustomersAction, removeCustomerAction, fetchCustomers } from './customers'
+export { addCustomerAction, removeCustomerAction, fetchCustomers } from './customers'

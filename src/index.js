@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import { compose } from "redux-devtools-extension"
 import cashReducer from './store/reducers/cashReducer'
 import customerReducer from './store/reducers/customerReducer'
-import { compose } from "redux-devtools-extension"
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
   || compose;

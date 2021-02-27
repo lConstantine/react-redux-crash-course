@@ -1,25 +1,24 @@
-import { ADD_CUSTOMER, ADD_MANY_CUSTOMERS, REMOVE_CUSTOMER } from './actionTypes'
+import { ADD_CUSTOMER, REMOVE_CUSTOMER } from './actionTypes'
 
 
-export const addCustomerAction = payload => ({
+export const addCustomerAction = customerData => ({
   type: ADD_CUSTOMER,
-  payload,
+  payload: {
+    customerData
+  },
 })
 
-export const addManyCustomersAction = payload => ({
-  type: ADD_MANY_CUSTOMERS,
-  payload,
-})
-
-export const removeCustomerAction = payload => ({
+export const removeCustomerAction = customerData => ({
   type: REMOVE_CUSTOMER,
-  payload,
+  payload: {
+    customerData
+  },
 })
 
 export const fetchCustomers = () => {
   return function (dispatch) {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(json => dispatch(addManyCustomersAction(json)))
+      .then(json => dispatch(addCustomerAction(json)))
   }
 }
